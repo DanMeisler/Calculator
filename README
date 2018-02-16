@@ -1,1 +1,5 @@
 Simple calculator in c
+
+* Using stack mechanisem.
+* Support * / + - ( ) operators
+* Support for all rational numbers
