@@ -5,7 +5,8 @@
 static Element parseNextElement()
 {
 	Element element;
-	unsigned char currentChar = getchar();
+	unsigned char currentChar;
+	while( ( currentChar = getchar() ) == ' ' );
 	int isNumber = isdigit( currentChar );
 	ungetc( currentChar, stdin );
 
