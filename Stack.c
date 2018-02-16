@@ -59,7 +59,7 @@ uint8_t endOfStackElement( const Element element )
 
 void printStack( const Stack *stackPtr )
 {
-    printf( "Stack size = %u, topIndex = %d\n", stackPtr->size, stackPtr->topIndex );
+    printf( "\n\nStack size = %u, topIndex = %d\n", stackPtr->size, stackPtr->topIndex );
 
     for( int32_t i = stackPtr->size - 1; i >= 0; --i )
     {
