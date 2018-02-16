@@ -20,7 +20,7 @@ static Element parseNextElement()
 		currentChar = getchar();
 		if( currentChar == '\n' )
 		{
-			element.kind = END_OF_STACK_ELEMENT;
+			element.kind = LAST_ELEMENT;
 		}
 		else
 		{
@@ -52,7 +52,7 @@ int main( void )
 		else
 			needParseNextElement = 1;
 
-		if( currentElement.kind == END_OF_STACK_ELEMENT )
+		if( currentElement.kind == LAST_ELEMENT )
 		{
 			newElement.kind = NUMERIC_ELEMENT;
 			newElement.number = 0;

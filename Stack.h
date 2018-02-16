@@ -3,6 +3,7 @@
 #define NUMERIC_ELEMENT 0
 #define CHARACTER_ELEMENT 1
 #define END_OF_STACK_ELEMENT 2
+#define LAST_ELEMENT 3
 
 typedef struct {
     uint8_t kind;
