@@ -196,17 +196,19 @@ static int evaluate( char *stringEquation, double *result )
 			}
 		}
 
-		printStack( &stack );
+		// printStack( &stack );
 	    currentElement = elements[++currentElementIndex];
 	}
 
 	free( elements );
 
 	if( !sumUp( &stack, '\0', result ) )
+	{
+		destroy( &stack );
 		return 0;
+	}
 
 	destroy( &stack );
-
 	return 1;
 }
 
