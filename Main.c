@@ -223,7 +223,7 @@ int main( void )
 
 	if( !evaluate( stringEquation, &result ) )
 	{
-		printf( "Some error occured\n" );
+		printf( "Some error occurred\n" );
 		return 1;
 	}
 
