@@ -2,10 +2,81 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "Stack.h"
+#include <stdint.h>
 
 #define MAX_STRING_EQUATION_SIZE 1000
+#define NUMERIC_ELEMENT 0
+#define CHARACTER_ELEMENT 1
+#define END_OF_STACK_ELEMENT 2
+#define LAST_ELEMENT 3
 
+typedef struct {
+    uint8_t kind;
+    double number;
+    char character;
+} Element;
+
+
+typedef struct {
+    Element *elements;
+    uint32_t size;
+    int32_t topIndex;
+} Stack;
+
+void init( Stack *stackPtr )
+{
+    stackPtr->elements = NULL;
+    stackPtr->size = 0;
+    stackPtr->topIndex = -1;
+}
+
+void destroy( Stack *stackPtr )
+{
+    stackPtr->size = 0;
+    stackPtr->topIndex = -1;
+    free( stackPtr->elements );
+}
+
+void push( Stack *stackPtr, const Element element )
+{
+    Element *newElements = (Element *)realloc( stackPtr->elements, ( stackPtr->size + 1 ) * sizeof( Element ) );
+
+    if( newElements == NULL )
+        return;
+
+    stackPtr->elements = newElements;
+    stackPtr->elements[stackPtr->size] = element;
+    stackPtr->size += 1;
+    stackPtr->topIndex += 1;
+}
+
+Element pop( Stack *stackPtr )
+{
+    if( stackPtr->size <= 0 )
+        return (Element){ .kind = END_OF_STACK_ELEMENT };
+
+    Element poppedElement = stackPtr->elements[stackPtr->topIndex]; 
+    stackPtr->size -= 1;
+    stackPtr->topIndex -= 1;
+    
+    return poppedElement;
+}
+
+Element top( Stack *stackPtr )
+{
+    if( stackPtr->size <= 0 )
+        return (Element){ .kind = END_OF_STACK_ELEMENT };
+
+    return stackPtr->elements[stackPtr->topIndex];
+}
+
+uint8_t endOfStackElement( const Element element )
+{
+    if( element.kind == END_OF_STACK_ELEMENT )
+        return 1;
+
+    return 0;
+}
 
 static Element *getElementsFromString( char *string )
 {
@@ -196,7 +267,6 @@ static int evaluate( char *stringEquation, double *result )
 			}
 		}
 
-		// printStack( &stack );
 	    currentElement = elements[++currentElementIndex];
 	}
 

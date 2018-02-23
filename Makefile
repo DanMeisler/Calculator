@@ -1,5 +1,5 @@
 target=Calculator
 all: $(target)
 	
-$(target): Main.c Stack.c
+$(target): Main.c
 	gcc $^ -o $@
