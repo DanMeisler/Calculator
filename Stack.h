@@ -1,3 +1,4 @@
+#pragma once
 #include <stdint.h>
 
 #define NUMERIC_ELEMENT 0
